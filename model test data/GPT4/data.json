@@ -1,0 +1,1685 @@
+input:
+{
+"task": "PlanAssembly",
+"introduction": "你是一个搭载了视觉识别能力的机械臂。你的任务是根据提供的材料控制机械臂制作一个太阳能小车。首先，相机会识别、然后机械臂收集所有必需的部件。然后，根据提供的步骤计划组装过程。接下来，机械臂将按照计划组装各个部件，并在每个步骤后检查组装情况。最后，进行一次完整的检查以确保台灯制作成功。",
+"task_parameters": {
+"assemblyInstructions": "制作太阳能小车 需要的材料: 4个塑料轮胎 1个绿色塑料底盘 1个太阳能电池板 1个电动机 1个大的白色减速齿轮 1个小型螺丝刀（十字头） 4个银色支架 4个微型橙色塑料轴承 2个金属轮轴 10个螺丝和螺母 步骤一：开始制作 取出提供的螺丝刀和8个螺丝和螺母。 选择4个金属托架，每个托架使用两个螺丝和螺母。 将每个金属托架安装到绿色塑料底盘上，确保每个托架牢固地固定在底盘上。 步骤二：安装轮子和轴 驱动轴上的轮子安装： 取一根金属棒作为驱动轴，将减速齿轮插入到金属棒。 在金属棒上安装一个橙色的塑料轴承。 将一个塑料轮子插入到安装有轴承的金属棒上。 将驱动轴（金属棒）通过已安装到底盘上的金属托架插入底盘。 在金属棒的另一端安装一个橙色的塑料轴承。 将另一个塑料轮子插入到驱动轴的另一侧。 自由轴上的轮子安装： 取另一根金属棒作为自由轴，安装一个橙色的塑料轴承。 将一个塑料轮子插入到安装有轴承的金属棒上。 将自由轴（金属棒）通过已安装到底盘上的金属托架插入底盘。 在金属棒的另一端安装一个橙色的塑料轴承。 将另一个塑料轮子插入到自由轴的另一侧。 步骤三：电气连接 取出线路剥皮器，剥去太阳能电池板的两条电线。 根据需要，将电线剪短到适合的长度，然后剥去电线的绝缘层。 将一根剥去绝缘层的电线缠绕，然后插入到电动机的小孔中，再次缠绕以固定。 对另一根电线重复上述步骤。 检查轮子是否可以自由旋转，如果轴承距离底盘太近，可能会引发摩擦。 步骤四：完成 你的太阳能小车已经完成了"
+},
+"possible_subtasks": [
+"AssembleParts"
+],
+"subtask_descriptions": [
+"AssembleParts-将部件组装到指定的对象上，注意这个命令一次只针对一个物体的安装，只做一步"
+],
+"subtask_parameters": [
+{
+    "name": "AssembleParts",
+    "parameters": [
+        {
+            "name": "assemblyPart",
+            "type": "str",
+            "description": "需要安装，拿取的那一个零件"
+        },
+        {
+            "name": "assemblyObject",
+            "type": "str",
+            "description": "拿取的那一个零件需要安装去的物体"
+        },
+        {
+            "name": "assemblyPlan",
+            "type": "str",
+            "description": "这一步安装的指导信息"
+        }
+    ]
+}
+],
+
+"possible_subtask_sequences": [
+["AssembleParts", "AssembleParts", "AssembleParts", "AssembleParts",  "AssembleParts", "AssembleParts"。。。。（maybe very long）],
+
+]
+
+}
+output:
+
+Chat history
+New chat
+Today
+Task Analysis and Subtasking
+Task Analysis & Subtask Division
+
+
+无换行太阳能小车
+找不到装配说明
+Frog Jump Farthest Index.
+Yesterday
+检查JSON字符串
+New chat
+电流谐振品质因数
+可视化实验数据
+设计GPT中间件工具
+Previous 7 Days
+焦虑编程挑战应对
+Virtual Environment Setup Errors
+读书报告建议
+装配个人电脑
+Previous 30 Days
+线程实现的生产者消费者问题 (Producer-Consumer using Threads)
+消息队列进程通信
+机械臂研究和应用
+A* algorithm implementation.
+学生日程规划建议
+New chat
+设置QT pushbutton样式
+AGV路径规划方案设计
+A*路径规划算法及数据结构
+New chat
+Fruit Picking Algorithm.
+C++ pub-sub example
+New chat
+New chat
+
+
+User
+2022946695@qq.com
+Model: GPT-4
+
+User
+        you are a machine who aim to analyze a task and then divide the task into smaller task ,
+        and then return the subtask sequences in json format.Each subtask in subtask sequences has it`s own parameters which
+        need you to fill.
+        you will receive a task ,the task `s parameter`s description,the task`s parameters,the subtask you can 
+        choose(you can not create new task instruction),the subtask description,the subtask`s parameters 
+        description,and possible subtask sequences which you can use them for reference,and a brief introduction to help
+        you understand the task(generate from you).
+        
+        the input should look like(json format):
+        {
+            "task": "Action word",
+            "task_parameters": {
+                "param1":"param1_value",
+                "param2":"param2_value"
+            },
+            "possible_subtasks": [
+                "subtask1",
+                "subtask2"
+            ],
+            "subtask_descriptions": [
+                "subtask1_description",
+                "subtask2_description"
+            ],
+            "subtask_parameters": {
+                "subtask1": [
+                    {"name":"param1","type":"type of this param,like int/str/float","description":"description about this param"},
+                    {"name":"param2","type":"type of this param,like int/str/float","description":"description about this param"}
+                ],
+                "subtask2": [
+                    {"name":"param1","type":"type of this param,like int/str/float","description":"description about this param"},
+                    {"name":"param2","type":"type of this param,like int/str/float","description":"description about this param"}
+                ]
+            },
+            "possible_subtask_sequences": [
+                ["subtask1_action","subtask2_action"],
+                ["subtask2_action","subtask1_action"]
+            ],
+            "introduction": "brief introduction information about the task"
+        }    
+        the output should look like:
+        {
+            "subtask_sequence":[
+                {"action":"action1",
+                 "parameters":{
+                    "param1":"param1_value",
+                    "param2":"param2_value"
+                 }
+                },
+                {"action":"action2",
+                 "parameters":{
+                    "param1":"param1_value",
+                    "param2":"param2_value"
+                 }
+                }
+            ]
+        }
+ChatGPT
+Sure, I understand the requirements. However, I want to clarify one thing before providing an example. I can certainly dissect the task into subtasks based on the provided subtasks list and structure a JSON response. However, it's important to note that due to my current capabilities, I can't dynamically decide how to distribute or utilize the task parameters among the subtasks. This requires more advanced and context-specific understanding. Hence, the filling of parameters in the subtasks in the generated JSON will be arbitrary. If this is okay, I can certainly create an example as per the format.
+
+
+
+
+
+User
+here `s some example:
+        input:
+        {
+            "task": "LOAD",
+            "introduction": "你是一个搭载了视觉识别能力的机械臂。你的任务是根据提供的材料控制机械臂制作一个小台灯。首先，相机会识别、然后机械臂收集所有必需的部件。然后，根据提供的步骤计划组装过程。接下来，机械臂将按照计划组装各个部件，并在每个步骤后检查组装情况。最后，进行一次完整的检查以确保台灯制作成功。",
+            "task_parameters": {
+                "object": "一个小台灯",
+                "position": "机械臂前方",
+                "info": "请你做一个小台灯，材料：中间钻了小洞的半个乒乓球、中间钻了小洞的一个瓶盖、一段有一端弯曲成一个小环（不能穿过瓶盖和乒乓球小洞）另一端细直（可以穿过瓶盖和乒乓球小洞，刚刚好可以卡住瓶盖小孔）的铅丝、一块球体黄色橡皮泥，一块和瓶盖差不多大小的蓝色橡皮泥 做法： 1）在乒乓球中间的洞中穿入铅丝，使得铅丝小环在半个乒乓球的凹面处，需要拉紧铅丝与半个乒乓球 2）将小环嵌入球体橡皮泥，确认固定好 3）将另一端铅丝卡进瓶盖，确认牢固 4）将蓝色橡皮泥塞进瓶盖里做配重，确认塞紧"
+            },
+            "possible_subtasks": [
+                "LocateParts",
+                "PickParts",
+                "ClassifyParts",
+                "PlanAssembly",
+                "FinalCheck",
+                "ReportCompletion"
+            ],
+            "subtask_descriptions": [
+                "LocateParts-根据指定的零件信息，查找并定位所有需要的零件",
+                "PickParts-按照所需零件列表，将每一个零件取出来",
+                "ClassifyParts-对取出的零件进行识别和归类",
+                "PlanAssembly-根据零件的类型和数量，以及组装指南信息，规划组装过程",
+                "FinalCheck-在整个组装过程完成后，进行最后的检查",
+                "ReportCompletion-如果一切检查都通过，报告组装完成"
+            ],
+            "subtask_parameters": [
+                {
+                    "name": "LocateParts",
+                    "parameters": [
+                        {
+                            "name": "partsList",
+                            "type": "List[str]",
+                            "description": "需要找到的零件列表"
+                        }
+                    ]
+                },
+                {
+                    "name": "PickParts",
+                    "parameters": [
+                        {
+                            "name": "partsList",
+                            "type": "List[str]",
+                            "description": "需要取出的零件列表"
+                        }
+                    ]
+                },
+                {
+                    "name": "ClassifyParts",
+                    "parameters": []
+                },
+                {
+                    "name": "PlanAssembly",
+                    "parameters": [
+                        {
+                            "name": "assemblyInstructions",
+                            "type": "str",
+                            "description": "组装指南，描述了如何组装成品的信息"
+                        }
+                    ]
+                },
+                {
+                    "name": "FinalCheck",
+                    "parameters": [
+                        {
+                            "name": "checkPoints",
+                            "type": "List[str]",
+                            "description": "需要检查的项目列表"
+                        }
+                    ]
+                },
+                {
+                    "name": "ReportCompletion",
+                    "parameters": []
+                }
+            ],
+
+            "possible_subtask_sequences": [
+                ["LocateParts", "PickParts", "ClassifyParts", "PlanAssembly",  "FinalCheck", "ReportCompletion"]
+            ]
+
+        }
+
+        output:
+        {
+            "subtask_sequence":[
+                {
+                    "action":"IdentifyParts",
+                    "parameters":{
+                        "parts":["半个乒乓球", "铅丝", "球体黄色橡皮泥", "瓶盖", "蓝色橡皮泥"]
+                    }
+                },
+                {
+                    "action":"PickParts",
+                    "parameters":{
+                        "parts":["半个乒乓球", "铅丝", "球体黄色橡皮泥", "瓶盖", "蓝色橡皮泥"]
+                    }
+                },
+                {
+                    "action":"PlanAssembly",
+                    "parameters":{
+                        "assemblyInstructions": " 1）在乒乓球中间的洞中穿入铅丝，使得铅丝小环在半个乒乓球的凹面处，需要拉紧铅丝与半个乒乓球 2）将小环嵌入球体橡皮泥，确认固定好 3）将另一端铅丝卡进瓶盖，确认牢固 4）将蓝色橡皮泥塞进瓶盖里做配重，确认塞紧"
+                    }
+                },
+                {
+                    "action":"FinalCheck",
+                    "parameters":{
+                        "checkPoints":["铅丝是否紧贴乒乓球","铅丝小环是否固定在乒乓球凹面处","铅丝小环是否固定在球体黄色橡皮泥中","铅丝是否牢固地卡在瓶盖中","蓝色橡皮泥是否紧塞在瓶盖中"]
+                    }
+                },
+                {
+                    "action":"ReportCompletion",
+                    "parameters":{}
+                } 
+            ]
+        }
+ChatGPT
+Thank you for the example. It's clearer now how you would like the task to be broken down and the parameters to be assigned. Here's how I would process such a request in Python:
+
+python
+Copy code
+import json
+
+def break_down_task(task_json):
+    # Extract necessary fields from JSON
+    task_parameters = task_json["task_parameters"]
+    possible_subtasks = task_json["possible_subtasks"]
+    subtask_parameters = task_json["subtask_parameters"]
+    
+    # List of parts to be processed
+    parts_list = task_parameters["info"].split("材料：")[1].split("做法：")[0].strip().split("、")
+    
+    # Assembly instructions
+    assembly_instructions = task_parameters["info"].split("做法：")[1].strip()
+    
+    # Generate a list of checkpoints
+    check_points = [s.split("确认")[1].strip() for s in assembly_instructions.split("）") if "确认" in s]
+    
+    # Create a sequence of subtasks with parameters
+    subtask_sequence = []
+    for subtask in possible_subtasks:
+        task = {"action": subtask, "parameters": {}}
+        if subtask == "LocateParts" or subtask == "PickParts":
+            task["parameters"]["partsList"] = parts_list
+        elif subtask == "PlanAssembly":
+            task["parameters"]["assemblyInstructions"] = assembly_instructions
+        elif subtask == "FinalCheck":
+            task["parameters"]["checkPoints"] = check_points
+        subtask_sequence.append(task)
+    
+    # Return the subtask sequence in JSON format
+    return json.dumps({"subtask_sequence": subtask_sequence}, ensure_ascii=False, indent=4)
+
+# Load task details from JSON
+task_json = json.loads(input_json)
+
+# Break down the task into a sequence of subtasks
+output_json = break_down_task(task_json)
+
+print(output_json)
+This code creates a Python function that takes the input task as JSON, breaks it down into a sequence of subtasks according to the provided rules, and returns the subtask sequence in JSON format.
+
+
+
+
+
+User
+input:
+                {
+            "task": "PlanAssembly",
+            "introduction": "你是一个搭载了视觉识别能力的机械臂。你的任务是根据提供的材料控制机械臂制作一个小台灯。首先，相机会识别、然后机械臂收集所有必需的部件。然后，根据提供的步骤计划组装过程。接下来，机械臂将按照计划组装各个部件，并在每个步骤后检查组装情况。最后，进行一次完整的检查以确保台灯制作成功。",
+            "task_parameters": {
+                "assemblyInstructions": "做一个小台灯，材料：中间钻了小洞的半个乒乓球、中间钻了小洞的一个瓶盖、一段有一端弯曲成一个小环（不能穿过瓶盖和乒乓球小洞）另一端细直（可以穿过瓶盖和乒乓球小洞，刚刚好可以卡住瓶盖小孔）的铅丝、一块球体黄色橡皮泥，一块和瓶盖差不多大小的蓝色橡皮泥 做法： 1）在乒乓球中间的洞中穿入铅丝，使得铅丝小环在半个乒乓球的凹面处，需要拉紧铅丝与半个乒乓球 2）将小环嵌入球体橡皮泥，确认固定好 3）将另一端铅丝卡进瓶盖，确认牢固 4）将蓝色橡皮泥塞进瓶盖里做配重，确认塞紧"
+            },
+            "possible_subtasks": [
+                "AssembleParts"
+            ],
+            "subtask_descriptions": [
+                "AssembleParts-将部件组装到指定的对象上"
+            ],
+            "subtask_parameters": [
+                {
+                    "name": "AssembleParts",
+                    "parameters": [
+                        {
+                            "name": "assemblyPart",
+                            "type": "str",
+                            "description": "需要安装，拿取的那一个零件"
+                        },
+                        {
+                            "name": "assemblyObject",
+                            "type": "str",
+                            "description": "拿取的那一个零件需要安装去的物体"
+                        },
+                        {
+                            "name": "assemblyPlan",
+                            "type": "str",
+                            "description": "这一步安装的指导信息"
+                        }
+                    ]
+                }
+            ],
+
+            "possible_subtask_sequences": [
+                ["AssembleParts", "AssembleParts", "AssembleParts", "AssembleParts",  "AssembleParts", "AssembleParts"],
+                ["AssembleParts", "AssembleParts", "AssembleParts"],
+                ["AssembleParts", "AssembleParts"]
+            ]
+
+        }
+        output:
+                {
+            "subtask_sequence":[
+                {"action":"AssembleParts",
+                 "parameters":{
+                        "assemblyPart":"铅丝",
+                        "assemblyObject":"半个乒乓球",
+                        "assemblyPlan":"将铅丝穿过乒乓球的小洞，并将铅丝小环固定在乒乓球凹面处"
+                 }
+                },
+                {"action":"AssembleParts",
+                 "parameters":{
+                        "assemblyPart":"铅丝小环",
+                        "assemblyObject":"球体黄色橡皮泥",
+                        "assemblyPlan":"将铅丝小环嵌入球体黄色橡皮泥中，确保固定"
+                 }
+                },
+                {"action":"AssembleParts",
+                 "parameters":{
+                        "assemblyPart":"铅丝",
+                        "assemblyObject":"瓶盖",
+                        "assemblyPlan":"将铅丝另一端卡进瓶盖，确保牢固"
+                 }
+                },
+                {"action":"AssembleParts",
+                 "parameters":{
+                        "assemblyPart":"蓝色橡皮泥",
+                        "assemblyObject":"瓶盖",
+                        "assemblyPlan":"将蓝色橡皮泥塞进瓶盖里做配重，确认塞紧"
+                 }
+                }
+            ]
+        }
+ChatGPT
+Thanks for the detailed example. The input JSON represents the "PlanAssembly" task, which involves the task of assembling the parts as per the given instructions. The output JSON provides the detailed assembly sequence in the form of "AssembleParts" subtask sequences.
+
+Here's how you can process such a request in Python:
+
+python
+Copy code
+import json
+
+def break_down_assembly(task_json):
+    # Extract necessary fields from JSON
+    assembly_instructions = task_json["task_parameters"]["assemblyInstructions"]
+    subtask_parameters = task_json
+
+
+
+
+User
+input:
+{
+    "task": "AssembleParts",
+    "introduction": "你是一个搭载了视觉识别能力的机械臂。你的任务是根据提供的材料控制机械臂制作一个小台灯。现在你要安装铅丝和半个乒乓球",
+    "task_parameters": {
+        "assemblyPart":"铅丝",
+        "assemblyObject":"半个乒乓球",
+        "assemblyPlan":"将铅丝穿过乒乓球的小洞，并将铅丝小环固定在乒乓球凹面处"
+    },
+    "possible_subtasks": [
+                "IdentifyPart",
+                "PickPart",
+                "PlacePart",
+                "CheckPartAssembly"
+    ],
+    "subtask_descriptions": [
+                "IdentifyPart-识别并定位需要装配的特定零件",
+                "PickPart-获取识别到的特定零件",
+                "PlacePart-在指定位置完成特定零件的装配动作",
+                "CheckPartAssembly-组装过程中或组装完成后，检查组装情况"
+    ],
+    "possible_subtask_sequences": [
+                ["IdentifyPart", "PickPart", "PlacePart", "CheckPartAssembly"]
+
+    ],
+    "subtask_parameters": [
+                {
+                    "name": "IdentifyPart",
+                    "parameters": [
+
+                    ]
+                },
+                {
+                    "name": "PickPart",
+                    "parameters": [
+                        {
+                            "name": "assemblyPart",
+                            "type": "str",
+                            "description": "需要识别并定位的特定零件的名称或描述"
+                        }
+                    ]
+                },
+                {
+                    "name": "PlacePart",
+                    "parameters": [
+                        {
+                            "name": "assemblyPart",
+                            "type": "str",
+                            "description": "需要获取的特定零件的名称或描述"
+                        },
+                        {
+                            "name": "assemblyObject",
+                            "type": "str",
+                            "description": "指定位置，被安装的物体的描述"
+                        },
+                        {
+                            "name": "assemblyPlan",
+                            "type": "str",
+                            "description": "组装计划，描述如何组装零件的信息"
+                        }
+                    ]
+                },
+                {
+                    "name": "CheckPartAssembly",
+                    "parameters": [
+                        {
+                            "name": "assemblyPart",
+                            "type": "str",
+                            "description": "特定零件的名称或描述"
+                        },
+                        {
+                            "name": "assemblyObject",
+                            "type": "str",
+                            "description": "指定位置，被安装的物体的描述"
+                        },
+                        {
+                            "name": "checkPoints",
+                            "type": "List[str]",
+                            "description": "需要检查的项目列表"
+                        }    
+                    ]
+                }
+    ]
+  
+}
+
+output:
+ChatGPT
+{
+"subtask_sequence": [
+{
+"action": "IdentifyPart",
+"parameters": {
+"assemblyPart": "铅丝"
+}
+},
+{
+"action": "PickPart",
+"parameters": {
+"assemblyPart": "铅丝"
+}
+},
+{
+"action": "PlacePart",
+"parameters": {
+"assemblyPart": "铅丝",
+"assemblyObject": "半个乒乓球",
+"assemblyPlan": "将铅丝穿过乒乓球的小洞，并将铅丝小环固定在乒乓球凹面处"
+}
+},
+{
+"action": "CheckPartAssembly",
+"parameters": {
+"assemblyPart": "铅丝",
+"assemblyObject": "半个乒乓球",
+"checkPoints": ["确保铅丝已经通过乒乓球的小洞并固定在乒乓球的凹面处"]
+}
+}
+]
+}
+
+
+
+
+
+User
+input:
+{
+    "task": "LOAD",
+    "introduction": "你是一个搭载了视觉识别能力的机械臂。你的任务是根据提供的材料控制机械臂制作一个太阳能小车。首先，相机会识别、然后机械臂收集所有必需的部件。然后，根据提供的步骤计划组装过程。接下来，机械臂将按照计划组装各个部件，并在每个步骤后检查组装情况。最后，进行一次完整的检查以确保台灯制作成功。",
+    "task_parameters": {
+        "object": "一个太阳能小车",
+        "position": "机械臂前方",
+        "info": "太阳能小车组装教程整理出的所需材料和制作步骤： 所需材料： 4个塑料轮胎 一个绿色的塑料底盘 一个太阳能电池板 一个电动机 一个大的白色减速齿轮 一个微型螺丝刀（十字头） 4个银色的托架 4个微小的橙色塑料轴承 2个金属杆用于轮子 10个螺丝和螺母（只需8个）  制作步骤： 步骤一：开始制作 首先，我们需要安装金属托架到底盘。我们有4个金属托架，需要用8个螺栓固定。你可以使用提供的螺丝刀进行安装。 步骤二：安装轮子和轴 现在我们需要将轮子安装到底盘。 驱动轴上的轮子安装： 插入减速齿轮 插入橙色塑料轴承 插入一个塑料轮子 将轴插入底盘通过金属托架 插入橙色塑料轴承 插入另一侧的塑料轮子 请记住，不要将这个轴安装得太紧，因为这个非精密部件的摩擦会引起摩擦。 自由轴上的轮子安装： 插入橙色塑料轴承 插入一个塑料轮子 将轴插入底盘通过金属托架 插入橙色塑料轴承 插入另一侧的塑料轮子 。现在不用担心前轮驱动或后轮驱动的配置，因为它将由电机入口的电线极性决定。 步骤三：电气连接 现在，你需要一个线路剥皮器来剥去来自太阳能电池板的两条线。因为电机没有极性标记，我建议你通过试错法来达到你选择的驱动配置：前轮驱动或后轮驱动。 步骤四：完成！"
+    },
+    "possible_subtasks": [
+        "LocateParts",
+        "PickParts",
+        "ClassifyParts",
+        "PlanAssembly",
+        "FinalCheck",
+        "ReportCompletion"
+    ],
+    "subtask_descriptions": [
+        "LocateParts-根据指定的零件信息，查找并定位所有需要的零件",
+        "PickParts-按照所需零件列表，将每一个零件取出来",
+        "ClassifyParts-对取出的零件进行识别和归类",
+        "PlanAssembly-根据零件的类型和数量，以及组装指南信息，规划组装过程",
+        "FinalCheck-在整个组装过程完成后，进行最后的检查",
+        "ReportCompletion-如果一切检查都通过，报告组装完成"
+    ],
+    "subtask_parameters": [
+        {
+            "name": "LocateParts",
+            "parameters": [
+                {
+                    "name": "partsList",
+                    "type": "List[str]",
+                    "description": "需要找到的零件列表"
+                }
+            ]
+        },
+        {
+            "name": "PickParts",
+            "parameters": [
+                {
+                    "name": "partsList",
+                    "type": "List[str]",
+                    "description": "需要取出的零件列表"
+                }
+            ]
+        },
+        {
+            "name": "ClassifyParts",
+            "parameters": []
+        },
+        {
+            "name": "PlanAssembly",
+            "parameters": [
+                {
+                    "name": "assemblyInstructions",
+                    "type": "str",
+                    "description": "组装指南，描述了如何组装成品的信息"
+                }
+            ]
+        },
+        {
+            "name": "FinalCheck",
+            "parameters": [
+                {
+                    "name": "checkPoints",
+                    "type": "List[str]",
+                    "description": "需要检查的项目列表"
+                }
+            ]
+        },
+        {
+            "name": "ReportCompletion",
+            "parameters": []
+        }
+    ],
+
+    "possible_subtask_sequences": [
+        ["LocateParts", "PickParts", "ClassifyParts", "PlanAssembly",  "FinalCheck", "ReportCompletion"]
+    ]
+
+}
+
+output:
+ChatGPT
+{
+"subtask_sequence": [
+{
+"action": "LocateParts",
+"parameters": {
+"partsList": ["4个塑料轮胎", "一个绿色的塑料底盘", "一个太阳能电池板", "一个电动机", "一个大的白色减速齿轮", "一个微型螺丝刀（十字头）", "4个银色的托架", "4个微小的橙色塑料轴承", "2个金属杆用于轮子", "10个螺丝和螺母（只需8个）"]
+}
+},
+{
+"action": "PickParts",
+"parameters": {
+"partsList": ["4个塑料轮胎", "一个绿色的塑料底盘", "一个太阳能电池板", "一个电动机", "一个大的白色减速齿轮", "一个微型螺丝刀（十字头）", "4个银色的托架", "4个微小的橙色塑料轴承", "2个金属杆用于轮子", "10个螺丝和螺母（只需8个）"]
+}
+},
+{
+"action": "ClassifyParts",
+"parameters": {}
+},
+{
+"action": "PlanAssembly",
+"parameters": {
+"assemblyInstructions": "太阳能小车组装教程整理出的所需材料和制作步骤： 所需材料： 4个塑料轮胎 一个绿色的塑料底盘 一个太阳能电池板 一个电动机 一个大的白色减速齿轮 一个微型螺丝刀（十字头） 4个银色的托架 4个微小的橙色塑料轴承 2个金属杆用于轮子 10个螺丝和螺母（只需8个） 制作步骤： 步骤一：开始制作 首先，我们需要安装金属托架到底盘。我们有4个金属托架，需要用8个螺栓固定。你可以使用提供的螺丝刀进行安装。 步骤二：安装轮子和轴 现在我们需要将轮子安装到底盘。 驱动轴上的轮子安装： 插入减速齿轮 插入橙色塑料轴承 插入一个塑料轮子 将轴插入底盘通过金属托架 插入橙色塑料轴承 插入另一侧的塑料轮子 请记住，不要将这个轴安装得太紧，因为这个非精密部件的摩擦会引起摩擦。 自由轴上的轮子安装： 插入橙色塑料轴承 插入一个塑料轮子 将轴插入底盘通过金属托架 插入橙色塑料轴承 插入另一侧的塑料轮子 。现在不用担心前轮驱动或后轮驱动的配置，因为它将由电机入口的电线极性决定。 步骤三：电气连接 现在，你需要一个线路剥皮器来剥去来自太阳能电池板的两条线。因为电机没有极性标记，我建议你通过试错法来达到你选择的驱动配置：前轮驱动或后轮驱动。 步骤四：完成！"
+}
+},
+{
+"action": "FinalCheck",
+"parameters": {
+"checkPoints": ["确认金属托架已安装到底盘上", "确认轮子已安装到底盘上", "确认电动机和太阳能板已连接"]
+}
+},
+{
+"action": "ReportCompletion",
+"parameters": {}
+}
+]
+}
+
+
+
+
+
+User
+input:
+{
+"task": "PlanAssembly",
+"introduction": "你是一个搭载了视觉识别能力的机械臂。你的任务是根据提供的材料控制机械臂制作一个太阳能小车。首先，相机会识别、然后机械臂收集所有必需的部件。然后，根据提供的步骤计划组装过程。接下来，机械臂将按照计划组装各个部件，并在每个步骤后检查组装情况。最后，进行一次完整的检查以确保台灯制作成功。",
+"task_parameters": {
+"assemblyInstructions": "太阳能小车组装教程整理出的所需材料和制作步骤： 所需材料： 4个塑料轮胎 一个绿色的塑料底盘 一个太阳能电池板 一个电动机 一个大的白色减速齿轮 一个微型螺丝刀（十字头） 4个银色的托架 4个微小的橙色塑料轴承 2个金属杆用于轮子 10个螺丝和螺母（只需8个） 制作步骤： 步骤一：开始制作 首先，我们需要安装金属托架到底盘。我们有4个金属托架，需要用8个螺栓固定。你可以使用提供的螺丝刀进行安装。 步骤二：安装轮子和轴 现在我们需要将轮子安装到底盘。 驱动轴上的轮子安装： 插入减速齿轮 插入橙色塑料轴承 插入一个塑料轮子 将轴插入底盘通过金属托架 插入橙色塑料轴承 插入另一侧的塑料轮子 请记住，不要将这个轴安装得太紧，因为这个非精密部件的摩擦会引起摩擦。 自由轴上的轮子安装： 插入橙色塑料轴承 插入一个塑料轮子 将轴插入底盘通过金属托架 插入橙色塑料轴承 插入另一侧的塑料轮子 。现在不用担心前轮驱动或后轮驱动的配置，因为它将由电机入口的电线极性决定。 步骤三：电气连接 现在，你需要一个线路剥皮器来剥去来自太阳能电池板的两条线。因为电机没有极性标记，我建议你通过试错法来达到你选择的驱动配置：前轮驱动或后轮驱动。 步骤四：完成！"
+},
+"possible_subtasks": [
+"AssembleParts"
+],
+"subtask_descriptions": [
+"AssembleParts-将部件组装到指定的对象上"
+],
+"subtask_parameters": [
+{
+    "name": "AssembleParts",
+    "parameters": [
+        {
+            "name": "assemblyPart",
+            "type": "str",
+            "description": "需要安装，拿取的那一个零件"
+        },
+        {
+            "name": "assemblyObject",
+            "type": "str",
+            "description": "拿取的那一个零件需要安装去的物体"
+        },
+        {
+            "name": "assemblyPlan",
+            "type": "str",
+            "description": "这一步安装的指导信息"
+        }
+    ]
+}
+],
+
+"possible_subtask_sequences": [
+["AssembleParts", "AssembleParts", "AssembleParts", "AssembleParts",  "AssembleParts", "AssembleParts"],
+["AssembleParts", "AssembleParts", "AssembleParts"],
+["AssembleParts", "AssembleParts"]
+]
+
+}
+output:
+ChatGPT
+{
+"subtask_sequence": [
+{
+"action": "AssembleParts",
+"parameters": {
+"assemblyPart": "4个银色的托架",
+"assemblyObject": "一个绿色的塑料底盘",
+"assemblyPlan": "我们需要安装金属托架到底盘。我们有4个金属托架，需要用8个螺栓固定。你可以使用提供的螺丝刀进行安装。"
+}
+},
+{
+"action": "AssembleParts",
+"parameters": {
+"assemblyPart": "4个塑料轮胎, 4个微小的橙色塑料轴承, 2个金属杆用于轮子, 一个大的白色减速齿轮",
+"assemblyObject": "一个绿色的塑料底盘",
+"assemblyPlan": "现在我们需要将轮子安装到底盘。 驱动轴上的轮子安装： 插入减速齿轮 插入橙色塑料轴承 插入一个塑料轮子 将轴插入底盘通过金属托架 插入橙色塑料轴承 插入另一侧的塑料轮子 请记住，不要将这个轴安装得太紧，因为这个非精密部件的摩擦会引起摩擦。 自由轴上的轮子安装： 插入橙色塑料轴承 插入一个塑料轮子 将轴插入底盘通过金属托架 插入橙色塑料轴承 插入另一侧的塑料轮子 。现在不用担心前轮驱动或后轮驱动的配置，因为它将由电机入口的电线极性决定。"
+}
+},
+{
+"action": "AssembleParts",
+"parameters": {
+"assemblyPart": "一个太阳能电池板, 一个电动机",
+"assemblyObject": "一个绿色的塑料底盘",
+"assemblyPlan": "现在，你需要一个线路剥皮器来剥去来自太阳能电池板的两条线。因为电机没有极性标记，我建议你通过试错法来达到你选择的驱动配置：前轮驱动或后轮驱动。"
+}
+}
+]
+}
+
+
+
+
+
+User
+input:
+{
+"task": "PlanAssembly",
+"introduction": "你是一个搭载了视觉识别能力的机械臂。你的任务是根据提供的材料控制机械臂制作一个太阳能小车。首先，相机会识别、然后机械臂收集所有必需的部件。然后，根据提供的步骤计划组装过程。接下来，机械臂将按照计划组装各个部件，并在每个步骤后检查组装情况。最后，进行一次完整的检查以确保台灯制作成功。",
+"task_parameters": {
+"assemblyInstructions": "太阳能小车组装教程整理出的所需材料和制作步骤： 所需材料： 4个塑料轮胎 一个绿色的塑料底盘 一个太阳能电池板 一个电动机 一个大的白色减速齿轮 一个微型螺丝刀（十字头） 4个银色的托架 4个微小的橙色塑料轴承 2个金属杆用于轮子 10个螺丝和螺母（只需8个） 制作步骤： 步骤一：开始制作 首先，我们需要安装金属托架到底盘。我们有4个金属托架，需要用8个螺栓固定。你可以使用提供的螺丝刀进行安装。 步骤二：安装轮子和轴 现在我们需要将轮子安装到底盘。 驱动轴上的轮子安装： 插入减速齿轮 插入橙色塑料轴承 插入一个塑料轮子 将轴插入底盘通过金属托架 插入橙色塑料轴承 插入另一侧的塑料轮子 请记住，不要将这个轴安装得太紧，因为这个非精密部件的摩擦会引起摩擦。 自由轴上的轮子安装： 插入橙色塑料轴承 插入一个塑料轮子 将轴插入底盘通过金属托架 插入橙色塑料轴承 插入另一侧的塑料轮子 。现在不用担心前轮驱动或后轮驱动的配置，因为它将由电机入口的电线极性决定。 步骤三：电气连接 现在，你需要一个线路剥皮器来剥去来自太阳能电池板的两条线。因为电机没有极性标记，我建议你通过试错法来达到你选择的驱动配置：前轮驱动或后轮驱动。 步骤四：完成！"
+},
+"possible_subtasks": [
+"AssembleParts"
+],
+"subtask_descriptions": [
+"AssembleParts-将部件组装到指定的对象上"
+],
+"subtask_parameters": [
+{
+    "name": "AssembleParts",
+    "parameters": [
+        {
+            "name": "assemblyPart",
+            "type": "str",
+            "description": "需要安装，拿取的那一个零件"
+        },
+        {
+            "name": "assemblyObject",
+            "type": "str",
+            "description": "拿取的那一个零件需要安装去的物体"
+        },
+        {
+            "name": "assemblyPlan",
+            "type": "str",
+            "description": "这一步安装的指导信息"
+        }
+    ]
+}
+],
+
+"possible_subtask_sequences": [
+["AssembleParts", "AssembleParts", "AssembleParts", "AssembleParts",  "AssembleParts", "AssembleParts"],
+["AssembleParts", "AssembleParts", "AssembleParts"],
+["AssembleParts", "AssembleParts"]
+]
+
+}
+output:
+ChatGPT
+{
+"subtask_sequence": [
+{
+"action": "AssembleParts",
+"parameters": {
+"assemblyPart": "4个银色的托架",
+"assemblyObject": "一个绿色的塑料底盘",
+"assemblyPlan": "我们需要安装金属托架到底盘。我们有4个金属托架，需要用8个螺栓固定。你可以使用提供的螺丝刀进行安装。"
+}
+},
+{
+"action": "AssembleParts",
+"parameters": {
+"assemblyPart": "4个塑料轮胎, 4个微小的橙色塑料轴承, 2个金属杆用于轮子, 一个大的白色减速齿轮",
+"assemblyObject": "一个绿色的塑料底盘",
+"assemblyPlan": "现在我们需要将轮子安装到底盘。 驱动轴上的轮子安装： 插入减速齿轮 插入橙色塑料轴承 插入一个塑料轮子 将轴插入底盘通过金属托架 插入橙色塑料轴承 插入另一侧的塑料轮子 请记住，不要将这个轴安装得太紧，因为这个非精密部件的摩擦会引起摩擦。 自由轴上的轮子安装： 插入橙色塑料轴承 插入一个塑料轮子 将轴插入底盘通过金属托架 插入橙色塑料轴承 插入另一侧的塑料轮子 。现在不用担心前轮驱动或后轮驱动的配置，因为它将由电机入口的电线极性决定。"
+}
+},
+{
+"action": "AssembleParts",
+"parameters": {
+"assemblyPart": "一个太阳能电池板, 一个电动机",
+"assemblyObject": "一个绿色的塑料底盘",
+"assemblyPlan": "现在，你需要一个线路剥皮器来剥去来自太阳能电池板的两条线。因为电机没有极性标记，我建议你通过试错法来达到你选择的驱动配置：前轮驱动或后轮驱动。"
+}
+}
+]
+}
+
+
+
+
+
+User
+input:
+{
+"task": "PlanAssembly",
+"introduction": "你是一个搭载了视觉识别能力的机械臂。你的任务是根据提供的材料控制机械臂制作一个太阳能小车。首先，相机会识别、然后机械臂收集所有必需的部件。然后，根据提供的步骤计划组装过程。接下来，机械臂将按照计划组装各个部件，并在每个步骤后检查组装情况。最后，进行一次完整的检查以确保台灯制作成功。",
+"task_parameters": {
+"assemblyInstructions": "太阳能小车组装教程整理出的所需材料和制作步骤： 所需材料： 4个塑料轮胎 一个绿色的塑料底盘 一个太阳能电池板 一个电动机 一个大的白色减速齿轮 一个微型螺丝刀（十字头） 4个银色的托架 4个微小的橙色塑料轴承 2个金属杆用于轮子 10个螺丝和螺母（只需8个） 制作步骤： 步骤一：开始制作 首先，我们需要安装金属托架到底盘。我们有4个金属托架，需要用8个螺栓固定。你可以使用提供的螺丝刀进行安装。 步骤二：安装轮子和轴 现在我们需要将轮子安装到底盘。 驱动轴上的轮子安装： 插入减速齿轮 插入橙色塑料轴承 插入一个塑料轮子 将轴插入底盘通过金属托架 插入橙色塑料轴承 插入另一侧的塑料轮子 请记住，不要将这个轴安装得太紧，因为这个非精密部件的摩擦会引起摩擦。 自由轴上的轮子安装： 插入橙色塑料轴承 插入一个塑料轮子 将轴插入底盘通过金属托架 插入橙色塑料轴承 插入另一侧的塑料轮子 。现在不用担心前轮驱动或后轮驱动的配置，因为它将由电机入口的电线极性决定。 步骤三：电气连接 现在，你需要一个线路剥皮器来剥去来自太阳能电池板的两条线。因为电机没有极性标记，我建议你通过试错法来达到你选择的驱动配置：前轮驱动或后轮驱动。 步骤四：完成！"
+},
+"possible_subtasks": [
+"AssembleParts"
+],
+"subtask_descriptions": [
+"AssembleParts-将部件组装到指定的对象上"
+],
+"subtask_parameters": [
+{
+    "name": "AssembleParts",
+    "parameters": [
+        {
+            "name": "assemblyPart",
+            "type": "str",
+            "description": "需要安装，拿取的那一个零件（注意只有一个，如果有4个同样的零件要做极其相似的操作，也要一个一个做）"
+        },
+        {
+            "name": "assemblyObject",
+            "type": "str",
+            "description": "拿取的那一个零件需要安装去的物体"
+        },
+        {
+            "name": "assemblyPlan",
+            "type": "str",
+            "description": "这一步安装的指导信息"
+        }
+    ]
+}
+],
+
+"possible_subtask_sequences": [
+["AssembleParts", "AssembleParts", "AssembleParts", "AssembleParts",  "AssembleParts", "AssembleParts"],
+["AssembleParts", "AssembleParts", "AssembleParts"],
+["AssembleParts", "AssembleParts"]
+]
+
+}
+output:
+ChatGPT
+{
+"subtask_sequence": [
+{
+"action": "AssembleParts",
+"parameters": {
+"assemblyPart": "银色的托架",
+"assemblyObject": "一个绿色的塑料底盘",
+"assemblyPlan": "我们需要安装金属托架到底盘。我们有4个金属托架，需要用8个螺栓固定。你可以使用提供的螺丝刀进行安装。"
+}
+},
+{
+"action": "AssembleParts",
+"parameters": {
+"assemblyPart": "银色的托架",
+"assemblyObject": "一个绿色的塑料底盘",
+"assemblyPlan": "继续安装剩下的金属托架到底盘。"
+}
+},
+{
+"action": "AssembleParts",
+"parameters": {
+"assemblyPart": "塑料轮胎, 微小的橙色塑料轴承, 金属杆, 大的白色减速齿轮",
+"assemblyObject": "一个绿色的塑料底盘",
+"assemblyPlan": "现在我们需要将轮子安装到底盘。 驱动轴上的轮子安装： 插入减速齿轮 插入橙色塑料轴承 插入一个塑料轮子 将轴插入底盘通过金属托架 插入橙色塑料轴承 插入另一侧的塑料轮子 请记住，不要将这个轴安装得太紧，因为这个非精密部件的摩擦会引起摩擦。"
+}
+},
+{
+"action": "AssembleParts",
+"parameters": {
+"assemblyPart": "塑料轮胎, 微小的橙色塑料轴承, 金属杆",
+"assemblyObject": "一个绿色的塑料底盘",
+"assemblyPlan": "自由轴上的轮子安装： 插入橙色塑料轴承 插入一个塑料轮子 将轴插入底盘通过金属托架 插入橙色塑料轴承 插入另一侧的塑料轮子 。现在不用担心前轮驱动或后轮驱动的配置，因为它将由电机入口的电线极性决定。"
+}
+},
+{
+"action": "AssembleParts",
+"parameters": {
+"assemblyPart": "太阳能电池板, 电动机",
+"assemblyObject": "一个绿色的塑料底盘",
+"assemblyPlan": "现在，你需要一个线路剥皮器来剥去来自太阳能电池板的两条线。因为电机没有极性标记，我建议你通过试错法来达到你选择的驱动配置：前轮驱动或后轮驱动。"
+}
+}
+]
+}
+
+
+
+
+
+User
+input:
+{
+"task": "PlanAssembly",
+"introduction": "你是一个搭载了视觉识别能力的机械臂。你的任务是根据提供的材料控制机械臂制作一个太阳能小车。首先，相机会识别、然后机械臂收集所有必需的部件。然后，根据提供的步骤计划组装过程。接下来，机械臂将按照计划组装各个部件，并在每个步骤后检查组装情况。最后，进行一次完整的检查以确保台灯制作成功。",
+"task_parameters": {
+"assemblyInstructions": "太阳能小车组装教程整理出的所需材料和制作步骤： 所需材料： 4个塑料轮胎 一个绿色的塑料底盘 一个太阳能电池板 一个电动机 一个大的白色减速齿轮 一个微型螺丝刀（十字头） 4个银色的托架 4个微小的橙色塑料轴承 2个金属杆用于轮子 10个螺丝和螺母（只需8个） 制作步骤： 步骤一：开始制作 首先，我们需要安装金属托架到底盘。我们有4个金属托架，需要用8个螺栓固定。你可以使用提供的螺丝刀进行安装。 步骤二：安装轮子和轴 现在我们需要将轮子安装到底盘。 驱动轴上的轮子安装： 插入减速齿轮 插入橙色塑料轴承 插入一个塑料轮子 将轴插入底盘通过金属托架 插入橙色塑料轴承 插入另一侧的塑料轮子 请记住，不要将这个轴安装得太紧，因为这个非精密部件的摩擦会引起摩擦。 自由轴上的轮子安装： 插入橙色塑料轴承 插入一个塑料轮子 将轴插入底盘通过金属托架 插入橙色塑料轴承 插入另一侧的塑料轮子 。现在不用担心前轮驱动或后轮驱动的配置，因为它将由电机入口的电线极性决定。 步骤三：电气连接 现在，你需要一个线路剥皮器来剥去来自太阳能电池板的两条线。因为电机没有极性标记，我建议你通过试错法来达到你选择的驱动配置：前轮驱动或后轮驱动。 步骤四：完成！"
+},
+"possible_subtasks": [
+"AssembleParts"
+],
+"subtask_descriptions": [
+"AssembleParts-将部件组装到指定的对象上"
+],
+"subtask_parameters": [
+{
+    "name": "AssembleParts",
+    "parameters": [
+        {
+            "name": "assemblyPart",
+            "type": "str",
+            "description": "需要安装，拿取的那一个零件（注意只有一个，如果有4个同样的零件要做极其相似的操作，也要一个一个做，这意味着要生成4个相似的命令，尽量猜测物体的实际特性，例如将四个东西分别装在右上角、右下角、左上角、左下角），不同类型的东西，只要不是一个东西，就应该分开做"
+        },
+        {
+            "name": "assemblyObject",
+            "type": "str",
+            "description": "拿取的那一个零件需要安装去的物体"
+        },
+        {
+            "name": "assemblyPlan",
+            "type": "str",
+            "description": "这一步安装的指导信息"
+        }
+    ]
+}
+],
+
+"possible_subtask_sequences": [
+["AssembleParts", "AssembleParts", "AssembleParts", "AssembleParts",  "AssembleParts", "AssembleParts"],
+["AssembleParts", "AssembleParts", "AssembleParts"],
+["AssembleParts", "AssembleParts"]
+]
+
+}
+output:
+ChatGPT
+{
+"subtask_sequence": [
+{
+"action": "AssembleParts",
+"parameters": {
+"assemblyPart": "银色的托架",
+"assemblyObject": "一个绿色的塑料底盘",
+"assemblyPlan": "我们需要安装金属托架到底盘。这是第一个托架，你可以使用提供的螺丝刀进行安装。"
+}
+},
+{
+"action": "AssembleParts",
+"parameters": {
+"assemblyPart": "银色的托架",
+"assemblyObject": "一个绿色的塑料底盘",
+"assemblyPlan": "继续安装第二个金属托架到底盘。"
+}
+},
+{
+"action": "AssembleParts",
+"parameters": {
+"assemblyPart": "银色的托架",
+"assemblyObject": "一个绿色的塑料底盘",
+"assemblyPlan": "现在，安装第三个金属托架到底盘。"
+}
+},
+{
+"action": "AssembleParts",
+"parameters": {
+"assemblyPart": "银色的托架",
+"assemblyObject": "一个绿色的塑料底盘",
+"assemblyPlan": "最后，安装第四个金属托架到底盘。"
+}
+},
+{
+"action": "AssembleParts",
+"parameters": {
+"assemblyPart": "塑料轮胎, 微小的橙色塑料轴承, 金属杆, 大的白色减速齿轮",
+"assemblyObject": "一个绿色的塑料底盘",
+"assemblyPlan": "驱动轴上的轮子安装： 插入减速齿轮 插入橙色塑料轴承 插入一个塑料轮子 将轴插入底盘通过金属托架 插入橙色塑料轴承 插入另一侧的塑料轮子"
+}
+},
+{
+"action": "AssembleParts",
+"parameters": {
+"assemblyPart": "塑料轮胎, 微小的橙色塑料轴承, 金属杆",
+"assemblyObject": "一个绿色的塑料底盘",
+"assemblyPlan": "自由轴上的轮子安装： 插入橙色塑料轴承 插入一个塑料轮子 将轴插入底盘通过金属托架 插入橙色塑料轴承 插入另一侧的塑料轮子"
+}
+},
+{
+"action": "AssembleParts",
+"parameters": {
+"assemblyPart": "太阳能电池板, 电动机",
+"assemblyObject": "一个绿色的塑料底盘",
+"assemblyPlan": "现在，你需要一个线路剥皮器来剥去来自太阳能电池板的两条线。因为电机没有极性标记，我建议你通过试错法来达到你选择的驱动配置：前轮驱动或后轮驱动。"
+}
+}
+]
+}
+
+
+
+
+
+User
+input:
+{
+    "task": "AssembleParts",
+    "introduction": "你是一个搭载了视觉识别能力的机械臂。你的任务是根据提供的材料控制机械臂制作一个太阳能小车。现在你要安装塑料轮胎, 微小的橙色塑料轴承, 金属杆, 大的白色减速齿轮到一个绿色的塑料底盘",
+    "task_parameters": {
+        "assemblyPart":"塑料轮胎, 微小的橙色塑料轴承, 金属杆, 大的白色减速齿轮",
+        "assemblyObject":"一个绿色的塑料底盘",
+        "assemblyPlan":"驱动轴上的轮子安装： 插入减速齿轮 插入橙色塑料轴承 插入一个塑料轮子 将轴插入底盘通过金属托架 插入橙色塑料轴承 插入另一侧的塑料轮子"
+    },
+    "possible_subtasks": [
+                "IdentifyPart",
+                "PickPart",
+                "PlacePart",
+                "CheckPartAssembly"
+    ],
+    "subtask_descriptions": [
+                "IdentifyPart-识别并定位需要装配的特定零件",
+                "PickPart-获取识别到的特定零件",
+                "PlacePart-在指定位置完成特定零件的装配动作",
+                "CheckPartAssembly-组装过程中或组装完成后，检查组装情况"
+    ],
+    "possible_subtask_sequences": [
+                ["IdentifyPart", "PickPart", "PlacePart", "CheckPartAssembly"]
+
+    ],
+    "subtask_parameters": [
+                {
+                    "name": "IdentifyPart",
+                    "parameters": [
+
+                    ]
+                },
+                {
+                    "name": "PickPart",
+                    "parameters": [
+                        {
+                            "name": "assemblyPart",
+                            "type": "str",
+                            "description": "需要识别并定位的特定零件的名称或描述"
+                        }
+                    ]
+                },
+                {
+                    "name": "PlacePart",
+                    "parameters": [
+                        {
+                            "name": "assemblyPart",
+                            "type": "str",
+                            "description": "需要获取的特定零件的名称或描述"
+                        },
+                        {
+                            "name": "assemblyObject",
+                            "type": "str",
+                            "description": "指定位置，被安装的物体的描述"
+                        },
+                        {
+                            "name": "assemblyPlan",
+                            "type": "str",
+                            "description": "组装计划，描述如何组装零件的信息"
+                        }
+                    ]
+                },
+                {
+                    "name": "CheckPartAssembly",
+                    "parameters": [
+                        {
+                            "name": "assemblyPart",
+                            "type": "str",
+                            "description": "特定零件的名称或描述"
+                        },
+                        {
+                            "name": "assemblyObject",
+                            "type": "str",
+                            "description": "指定位置，被安装的物体的描述"
+                        },
+                        {
+                            "name": "checkPoints",
+                            "type": "List[str]",
+                            "description": "需要检查的项目列表"
+                        }    
+                    ]
+                }
+    ]
+  
+}
+
+output:
+ChatGPT
+{
+"subtask_sequence": [
+{
+"action": "IdentifyPart",
+"parameters": {
+"assemblyPart": "大的白色减速齿轮"
+}
+},
+{
+"action": "PickPart",
+"parameters": {
+"assemblyPart": "大的白色减速齿轮"
+}
+},
+{
+"action": "PlacePart",
+"parameters": {
+"assemblyPart": "大的白色减速齿轮",
+"assemblyObject": "一个绿色的塑料底盘",
+"assemblyPlan": "插入减速齿轮"
+}
+},
+{
+"action": "CheckPartAssembly",
+"parameters": {
+"assemblyPart": "大的白色减速齿轮",
+"assemblyObject": "一个绿色的塑料底盘",
+"checkPoints": ["减速齿轮是否安装在正确的位置"]
+}
+},
+{
+"action": "IdentifyPart",
+"parameters": {
+"assemblyPart": "微小的橙色塑料轴承"
+}
+},
+{
+"action": "PickPart",
+"parameters": {
+"assemblyPart": "微小的橙色塑料轴承"
+}
+},
+{
+"action": "PlacePart",
+"parameters": {
+"assemblyPart": "微小的橙色塑料轴承",
+"assemblyObject": "一个绿色的塑料底盘",
+"assemblyPlan": "插入橙色塑料轴承"
+}
+},
+{
+"action": "CheckPartAssembly",
+"parameters": {
+"assemblyPart": "微小的橙色塑料轴承",
+"assemblyObject": "一个绿色的塑料底盘",
+"checkPoints": ["塑料轴承是否安装在正确的位置"]
+}
+},
+{
+"action": "IdentifyPart",
+"parameters": {
+"assemblyPart": "塑料轮胎"
+}
+},
+{
+"action": "PickPart",
+"parameters": {
+"assemblyPart": "塑料轮胎"
+}
+},
+{
+"action": "PlacePart",
+"parameters": {
+"assemblyPart": "塑料轮胎",
+"assemblyObject": "一个绿色的塑料底盘",
+"assemblyPlan": "插入一个塑料轮子"
+}
+},
+{
+"action": "CheckPartAssembly",
+"parameters": {
+"assemblyPart": "塑料轮胎",
+"assemblyObject": "一个绿色的塑料底盘",
+"checkPoints": ["轮胎是否安装在正确的位置"]
+}
+},
+{
+"action": "IdentifyPart",
+"parameters": {
+"assemblyPart": "金属杆"
+}
+},
+{
+"action": "PickPart",
+"parameters": {
+"assemblyPart": "金属杆"
+}
+},
+{
+"action": "PlacePart",
+"parameters": {
+"assemblyPart": "金属杆",
+"assemblyObject": "一个绿色的塑料底盘",
+"assemblyPlan": "将轴插入底盘通过金属托架"
+}
+},
+{
+"action": "CheckPartAssembly",
+"parameters": {
+"assemblyPart": "金属杆",
+"assemblyObject": "一个绿色的塑料底盘",
+"checkPoints": ["金属杆是否安装在正确的位置"]
+}
+}
+]
+}
+
+
+
+
+
+User
+input:
+{
+    "task": "AssembleParts",
+    "introduction": "你是一个搭载了视觉识别能力的机械臂。你的任务是根据提供的材料控制机械臂制作一个太阳能小车。现在你要安装驱动轴的两个塑料轮胎, 两个微小的橙色塑料轴承,一根金属杆, 一个大的白色减速齿轮到一个绿色的塑料底盘",
+    "task_parameters": {
+        "assemblyPart":"两个塑料轮胎, 两个微小的橙色塑料轴承, 一根金属杆, 一个大的白色减速齿轮",
+        "assemblyObject":"一个绿色的塑料底盘",
+        "assemblyPlan":"驱动轴上的轮子安装： 插入减速齿轮 插入橙色塑料轴承 插入一个塑料轮子 将轴插入底盘通过金属托架 插入橙色塑料轴承 插入另一侧的塑料轮子"
+    },
+    "possible_subtasks": [
+                "IdentifyPart",
+                "PickPart",
+                "PlacePart",
+                "CheckPartAssembly"
+    ],
+    "subtask_descriptions": [
+                "IdentifyPart-识别并定位需要装配的特定零件",
+                "PickPart-获取识别到的特定零件",
+                "PlacePart-在指定位置完成特定零件的装配动作",
+                "CheckPartAssembly-组装过程中或组装完成后，检查组装情况"
+    ],
+    "possible_subtask_sequences": [
+                ["IdentifyPart", "PickPart", "PlacePart", "CheckPartAssembly"]
+
+    ],
+    "subtask_parameters": [
+                {
+                    "name": "IdentifyPart",
+                    "parameters": [
+
+                    ]
+                },
+                {
+                    "name": "PickPart",
+                    "parameters": [
+                        {
+                            "name": "assemblyPart",
+                            "type": "str",
+                            "description": "需要识别并定位的特定零件的名称或描述"
+                        }
+                    ]
+                },
+                {
+                    "name": "PlacePart",
+                    "parameters": [
+                        {
+                            "name": "assemblyPart",
+                            "type": "str",
+                            "description": "需要获取的特定零件的名称或描述"
+                        },
+                        {
+                            "name": "assemblyObject",
+                            "type": "str",
+                            "description": "指定位置，被安装的物体的描述"
+                        },
+                        {
+                            "name": "assemblyPlan",
+                            "type": "str",
+                            "description": "组装计划，描述如何组装零件的信息"
+                        }
+                    ]
+                },
+                {
+                    "name": "CheckPartAssembly",
+                    "parameters": [
+                        {
+                            "name": "assemblyPart",
+                            "type": "str",
+                            "description": "特定零件的名称或描述"
+                        },
+                        {
+                            "name": "assemblyObject",
+                            "type": "str",
+                            "description": "指定位置，被安装的物体的描述"
+                        },
+                        {
+                            "name": "checkPoints",
+                            "type": "List[str]",
+                            "description": "需要检查的项目列表"
+                        }    
+                    ]
+                }
+    ]
+  
+}
+
+output:
+ChatGPT
+{
+"subtask_sequence": [
+{
+"action": "IdentifyPart",
+"parameters": {
+"assemblyPart": "一个大的白色减速齿轮"
+}
+},
+{
+"action": "PickPart",
+"parameters": {
+"assemblyPart": "一个大的白色减速齿轮"
+}
+},
+{
+"action": "PlacePart",
+"parameters": {
+"assemblyPart": "一个大的白色减速齿轮",
+"assemblyObject": "一个绿色的塑料底盘",
+"assemblyPlan": "插入减速齿轮"
+}
+},
+{
+"action": "CheckPartAssembly",
+"parameters": {
+"assemblyPart": "一个大的白色减速齿轮",
+"assemblyObject": "一个绿色的塑料底盘",
+"checkPoints": ["减速齿轮是否安装在正确的位置"]
+}
+},
+{
+"action": "IdentifyPart",
+"parameters": {
+"assemblyPart": "一个微小的橙色塑料轴承"
+}
+},
+{
+"action": "PickPart",
+"parameters": {
+"assemblyPart": "一个微小的橙色塑料轴承"
+}
+},
+{
+"action": "PlacePart",
+"parameters": {
+"assemblyPart": "一个微小的橙色塑料轴承",
+"assemblyObject": "一个绿色的塑料底盘",
+"assemblyPlan": "插入橙色塑料轴承"
+}
+},
+{
+"action": "CheckPartAssembly",
+"parameters": {
+"assemblyPart": "一个微小的橙色塑料轴承",
+"assemblyObject": "一个绿色的塑料底盘",
+"checkPoints": ["第一个塑料轴承是否安装在正确的位置"]
+}
+},
+{
+"action": "IdentifyPart",
+"parameters": {
+"assemblyPart": "一个塑料轮胎"
+}
+},
+{
+"action": "PickPart",
+"parameters": {
+"assemblyPart": "一个塑料轮胎"
+}
+},
+{
+"action": "PlacePart",
+"parameters": {
+"assemblyPart": "一个塑料轮胎",
+"assemblyObject": "一个绿色的塑料底盘",
+"assemblyPlan": "插入一个塑料轮子"
+}
+},
+{
+"action": "CheckPartAssembly",
+"parameters": {
+"assemblyPart": "一个塑料轮胎",
+"assemblyObject": "一个绿色的塑料底盘",
+"checkPoints": ["第一个轮胎是否安装在正确的位置"]
+}
+},
+{
+"action": "IdentifyPart",
+"parameters": {
+"assemblyPart": "一根金属杆"
+}
+},
+{
+"action": "PickPart",
+"parameters": {
+"assemblyPart": "一根金属杆"
+}
+},
+{
+"action": "PlacePart",
+"parameters": {
+"assemblyPart": "一根金属杆",
+"assemblyObject": "一个绿色的塑料底盘",
+"assemblyPlan": "将轴插入底盘通过金属托架"
+}
+},
+{
+"action": "CheckPartAssembly",
+"parameters": {
+"assemblyPart": "一根金属杆",
+"assemblyObject": "一个绿色的塑料底盘",
+"checkPoints": ["金属杆是否安装在正确的位置"]
+}
+
+
+
+
+
+User
+input:
+{
+    "task": "LOAD",
+    "introduction": "你是一个搭载了视觉识别能力的机械臂。你的任务是根据提供的材料控制机械臂制作一个小车。首先，相机会识别、然后机械臂收集所有必需的部件。然后，根据提供的步骤计划组装过程。接下来，机械臂将按照计划组装各个部件，并在每个步骤后检查组装情况。最后，进行一次完整的检查以确保台灯制作成功。",
+    "task_parameters": {
+        "object": "一个太阳能小车",
+        "position": "机械臂前方",
+        "info": "制作太阳能小车 需要的材料: 4个塑料轮胎 1个绿色塑料底盘 1个太阳能电池板 1个电动机 1个大的白色减速齿轮 1个小型螺丝刀（十字头） 4个银色支架 4个微型橙色塑料轴承 2个金属轮轴 10个螺丝和螺母 步骤一：开始制作 取出提供的螺丝刀和8个螺丝和螺母。 选择4个金属托架，每个托架使用两个螺丝和螺母。 将每个金属托架安装到绿色塑料底盘上，确保每个托架牢固地固定在底盘上。 步骤二：安装轮子和轴 驱动轴上的轮子安装： 取一根金属棒作为驱动轴，将减速齿轮插入到金属棒。 在金属棒上安装一个橙色的塑料轴承。 将一个塑料轮子插入到安装有轴承的金属棒上。 将驱动轴（金属棒）通过已安装到底盘上的金属托架插入底盘。 在金属棒的另一端安装一个橙色的塑料轴承。 将另一个塑料轮子插入到驱动轴的另一侧。 自由轴上的轮子安装： 取另一根金属棒作为自由轴，安装一个橙色的塑料轴承。 将一个塑料轮子插入到安装有轴承的金属棒上。 将自由轴（金属棒）通过已安装到底盘上的金属托架插入底盘。 在金属棒的另一端安装一个橙色的塑料轴承。 将另一个塑料轮子插入到自由轴的另一侧。 步骤三：电气连接 取出线路剥皮器，剥去太阳能电池板的两条电线。 根据需要，将电线剪短到适合的长度，然后剥去电线的绝缘层。 将一根剥去绝缘层的电线缠绕，然后插入到电动机的小孔中，再次缠绕以固定。 对另一根电线重复上述步骤。 检查轮子是否可以自由旋转，如果轴承距离底盘太近，可能会引发摩擦。 步骤四：完成 你的太阳能小车已经完成了"
+    },
+    "possible_subtasks": [
+        "LocateParts",
+        "PickParts",
+        "ClassifyParts",
+        "PlanAssembly",
+        "FinalCheck",
+        "ReportCompletion"
+    ],
+    "subtask_descriptions": [
+        "LocateParts-根据指定的零件信息，查找并定位所有需要的零件，注意保留零件的个数信息",
+        "PickParts-按照所需零件列表，将每一个零件取出来，注意保留零件的个数信息",
+        "ClassifyParts-对取出的零件进行识别和归类",
+        "PlanAssembly-根据零件的类型和数量，以及组装指南信息，规划组装过程，注意如果安装过程有许多的步骤，将每个大步骤拆出来，和材料描述一起放进一个PlanAssembly。例如有四个步骤，就生成四个PlanAssembly，每个规划一个步骤",
+        "FinalCheck-在整个组装过程完成后，进行最后的检查",
+        "ReportCompletion-如果一切检查都通过，报告组装完成"
+    ],
+    "subtask_parameters": [
+        {
+            "name": "LocateParts",
+            "parameters": [
+                {
+                    "name": "partsList",
+                    "type": "List[str]",
+                    "description": "需要找到的零件列表，注意每种零件记录数量，如‘四个齿轮’"
+                }
+            ]
+        },
+        {
+            "name": "PickParts",
+            "parameters": [
+                {
+                    "name": "partsList",
+                    "type": "List[str]",
+                    "description": "需要拿取的零件列表，注意每种零件记录数量，如‘四个齿轮’"
+                }
+            ]
+        },
+        {
+            "name": "ClassifyParts",
+            "parameters": []
+        },
+        {
+            "name": "PlanAssembly",
+            "parameters": [
+                {
+                    "name": "assemblyInstructions",
+                    "type": "str",
+                    "description": "组装指南，描述了组装成品的其中一个步骤的信息，"
+                }
+            ]
+        },
+        {
+            "name": "FinalCheck",
+            "parameters": [
+                {
+                    "name": "checkPoints",
+                    "type": "List[str]",
+                    "description": "需要检查的项目列表"
+                }
+            ]
+        },
+        {
+            "name": "ReportCompletion",
+            "parameters": []
+        }
+    ],
+
+    "possible_subtask_sequences": [
+        ["LocateParts", "PickParts", "ClassifyParts", "PlanAssembly","PlanAssembly","PlanAssembly","PlanAssembly",  "FinalCheck", "ReportCompletion"],
+        ["LocateParts", "PickParts", "ClassifyParts", "PlanAssembly","PlanAssembly","PlanAssembly","PlanAssembly", "PlanAssembly","PlanAssembly", "FinalCheck", "ReportCompletion"],
+        ["LocateParts", "PickParts", "ClassifyParts", "PlanAssembly", "FinalCheck", "ReportCompletion"]
+    ]
+
+}
+
+output:
+ChatGPT
+{
+"subtask_sequence": [
+{
+"action": "LocateParts",
+"parameters": {
+"partsList": [
+"4个塑料轮胎",
+"1个绿色塑料底盘",
+"1个太阳能电池板",
+"1个电动机",
+"1个大的白色减速齿轮",
+"1个小型螺丝刀（十字头）",
+"4个银色支架",
+"4个微型橙色塑料轴承",
+"2个金属轮轴",
+"10个螺丝和螺母"
+]
+}
+},
+{
+"action": "PickParts",
+"parameters": {
+"partsList": [
+"4个塑料轮胎",
+"1个绿色塑料底盘",
+"1个太阳能电池板",
+"1个电动机",
+"1个大的白色减速齿轮",
+"1个小型螺丝刀（十字头）",
+"4个银色支架",
+"4个微型橙色塑料轴承",
+"2个金属轮轴",
+"10个螺丝和螺母"
+]
+}
+},
+{
+"action": "ClassifyParts",
+"parameters": {}
+},
+{
+"action": "PlanAssembly",
+"parameters": {
+"assemblyInstructions": "制作太阳能小车 需要的材料: 4个塑料轮胎 1个绿色塑料底盘 1个太阳能电池板 1个电动机 1个大的白色减速齿轮 1个小型螺丝刀（十字头） 4个银色支架 4个微型橙色塑料轴承 2个金属轮轴 10个螺丝和螺母 步骤一：开始制作 取出提供的螺丝刀和8个螺丝和螺母。 选择4个金属托架，每个托架使用两个螺丝和螺母。 将每个金属托架安装到绿色塑料底盘上，确保每个托架牢固地固定在底盘上。 步骤二：安装轮子和轴 驱动轴上的轮子安装： 取一根金属棒作为驱动轴，将减速齿轮插入到金属棒。 在金属棒上安装一个橙色的塑料轴承。 将一个塑料轮子插入到安装有轴承的金属棒上。 将驱动轴（金属棒）通过已安装到底盘上的金属托架插入底盘。 在金属棒的另一端安装一个橙色的塑料轴承。 将另一个塑料轮子插入到驱动轴的另一侧。 自由轴上的轮子安装： 取另一根金属棒作为自由轴，安装一个橙色的塑料轴承。 将一个塑料轮子插入到安装有轴承的金属棒上。 将自由轴（金属棒）通过已安装到底盘上的金属托架插入底盘。 在金属棒的另一端安装一个橙色的塑料轴承。 将另一个塑料轮子插入到自由轴的另一侧。 步骤三：电气连接 取出线路剥皮器，剥去太阳能电池板的两条电线。 根据需要，将电线剪短到适合的长度，然后剥去电线的绝缘层。 将一根剥去绝缘层的电线缠绕，然后插入到电动机的小孔中，再次缠绕以固定。 对另一根电线重复上述步骤。 检查轮子是否可以自由旋转，如果轴承距离底盘太近，可能会引发摩擦。 步骤四：完成 你的太阳能小车已经完成了"
+}
+},
+{
+"action": "FinalCheck",
+"parameters": {
+"checkPoints": [
+"确保所有零件都已正确组装",
+"确保电气连接正确",
+"确保轮子可以自由旋转",
+"确保太阳能电池板已正确安装"
+]
+}
+},
+{
+"action": "ReportCompletion",
+"parameters": {}
+}
+]
+}
+
+
+
+
+
+User
+input:
+{
+"task": "PlanAssembly",
+"introduction": "你是一个搭载了视觉识别能力的机械臂。你现在需要制作一个小车，你现在要安装轮子",
+"task_parameters": {
+"assemblyInstructions": "取出提供的螺丝刀和8个螺丝和螺母。选择4个金属托架，每个托架使用两个螺丝和螺母。将每个金属托架安装到绿色塑料底盘上，确保每个托架牢固地固定在底盘上。 "
+},
+"possible_subtasks": [
+"AssembleParts"
+],
+"subtask_descriptions": [
+"AssembleParts-将部件组装到指定的对象上,注意这个命令只针对一个零件的安装，也就是只做一步，不可以有多个零件。注意由于这个命令会继续往下生成子命令，你需要给它的参数里填写足够的信息，包括但不限于：这一步的材料，这一步的具体步骤，这一步的目标"
+],
+"subtask_parameters": [
+{
+    "name": "AssembleParts",
+    "parameters": [
+        {
+            "name": "assemblyPart",
+            "type": "str",
+            "description": "需要安装，拿取的那一个零件"
+        },
+        {
+            "name": "assemblyObject",
+            "type": "str",
+            "description": "拿取的那一个零件需要安装去的物体"
+        },
+        {
+            "name": "connectPart",
+            "type": "str",
+            "description": "用于连接两个物体的连接零件"
+        },        
+        {
+            "name": "assemblyPlan",
+            "type": "str",
+            "description": "包括但不限于：这一步的材料，这一步的具体步骤，零件的装配方式，这一步的目标"
+        }
+    ]
+}
+],
+
+"possible_subtask_sequences": [
+["AssembleParts", "AssembleParts", "AssembleParts", "AssembleParts",  "AssembleParts", "AssembleParts"],
+["AssembleParts", "AssembleParts", "AssembleParts"],
+["AssembleParts", "AssembleParts"]
+]
+
+}
+output:
+
+步骤二：安装轮子和轴 驱动轴上的轮子安装： 取一根金属棒作为驱动轴，将减速齿轮插入到金属棒。 在金属棒上安装一个橙色的塑料轴承。 将一个塑料轮子插入到安装有轴承的金属棒上。 将驱动轴（金属棒）通过已安装到底盘上的金属托架插入底盘。 在金属棒的另一端安装一个橙色的塑料轴承。 将另一个塑料轮子插入到驱动轴的另一侧。 自由轴上的轮子安装： 取另一根金属棒作为自由轴，安装一个橙色的塑料轴承。 将一个塑料轮子插入到安装有轴承的金属棒上。 将自由轴（金属棒）通过已安装到底盘上的金属托架插入底盘。 在金属棒的另一端安装一个橙色的塑料轴承。 将另一个塑料轮子插入到自由轴的另一侧。 步骤三：电气连接 取出线路剥皮器，剥去太阳能电池板的两条电线。 根据需要，将电线剪短到适合的长度，然后剥去电线的绝缘层。 将一根剥去绝缘层的电线缠绕，然后插入到电动机的小孔中，再次缠绕以固定。 对另一根电线重复上述步骤。 检查轮子是否可以自由旋转，如果轴承距离底盘太近，可能会引发摩擦。 步骤四：完成 你的太阳能小车已经完成了
+ChatGPT
+{
+"subtask_sequence": [
+{
+"action": "AssembleParts",
+"parameters": {
+"assemblyPart": "4个银色支架",
+"assemblyObject": "1个绿色塑料底盘",
+"assemblyPlan": "选择4个金属托架，每个托架使用两个螺丝和螺母。 将每个金属托架安装到绿色塑料底盘上，确保每个托架牢固地固定在底盘上。"
+}
+},
+{
+"action": "AssembleParts",
+"parameters": {
+"assemblyPart": "2个金属轮轴，4个微型橙色塑料轴承，4个塑料轮胎，1个大的白色减速齿轮",
+"assemblyObject": "已安装有支架的绿色塑料底盘",
+"assemblyPlan": "驱动轴上的轮子安装： 取一根金属棒作为驱动轴，将减速齿轮插入到金属棒。 在金属棒上安装一个橙色的塑料轴承。 将一个塑料轮子插入到安装有轴承的金属棒上。 将驱动轴（金属棒）通过已安装到底盘上的金属托架插入底盘。 在金属棒的另一端安装一个橙色的塑料轴承。 将另一个塑料轮子插入到驱动轴的另一侧。 自由轴上的轮子安装： 取另一根金属棒作为自由轴，安装一个橙色的塑料轴承。 将一个塑料轮子插入到安装有轴承的金属棒上。 将自由轴（金属棒）通过已安装到底盘上的金属托架插入底盘。 在金属棒的另一端安装一个橙色的塑料轴承。 将另一个塑料轮子插入到自由轴的另一侧。"
+}
+},
+{
+"action": "AssembleParts",
+"parameters": {
+"assemblyPart": "1个太阳能电池板",
+"assemblyObject": "已安装有轮胎和轴的绿色塑料底盘",
+"assemblyPlan": "取出线路剥皮器，剥去太阳能电池板的两条电线。 根据需要，将电线剪短到适合的长度，然后剥去电线的绝缘层。 将一根剥去绝缘层的电线缠绕，然后插入到电动机的小孔中，再次缠绕以固定。 对另一根电线重复上述步骤。"
+}
+}
+]
+}
+
+
+
+
+
